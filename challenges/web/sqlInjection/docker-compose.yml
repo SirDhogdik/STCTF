@@ -1,0 +1,19 @@
+web:
+  image: php
+  ports:
+    - "8001:80"
+  volumes:
+    - ./service:/var/www/html/
+  links:
+    - db:database
+
+db:
+  image:
+    docker.io/mysql
+  volumes:
+    - /var/lib/mysql
+  environment:
+    - MYSQL_ROOT_PASSWORD=rootpass
+    - MYSQL_USER=user
+    - MYSQL_PASSWORD=userpass
+    - MYSQL_DATABASE=users
